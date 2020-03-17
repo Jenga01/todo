@@ -7,6 +7,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
+                    @if($tasks->count()>0)
                     <div class="card-header">My tasks</div>
 
                     <div class="card-body">
@@ -25,8 +26,8 @@
                                         <th>@sortablelink('status')</th>
                                         <th>Change status</th>
                                     </tr>
-                                    @if($tasks->count())
-                                        @foreach($tasks as $key => $task)
+
+                                        @foreach($tasks as $task)
                                             <tr>
                                                 <td>{{ $task->task_name }}</td>
                                                 <td>{{ $task->due_date }}</td>
@@ -56,6 +57,8 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+                                    @else
+                                        User has no tasks
                                     @endif
                                 </table>
 

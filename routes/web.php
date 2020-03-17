@@ -20,11 +20,9 @@ Route::get('/login', function () {
     if(Auth::check()){
         return view('auth.login');
     }
-
 });
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-
 
 Route::group(['middleware' => 'auth'], function() {
 Route::resource('users', 'UsersController');
@@ -37,3 +35,4 @@ Route::get('/sort-date', 'tasksController@sortByDate')->name('sortDate');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

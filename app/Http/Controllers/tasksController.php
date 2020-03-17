@@ -6,6 +6,7 @@ use App\Tasks;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class tasksController extends Controller
 {
@@ -16,8 +17,6 @@ class tasksController extends Controller
      */
     public function index()
     {
-
-
         return view('tasks.create');
     }
 
@@ -62,11 +61,10 @@ class tasksController extends Controller
      */
     public function show()
     {
+          $tasks=Tasks::where('user_id', Auth::user()->id)->cacheFor(60)->sortable()->paginate(5); //cacheFor naudoja CACHE_DRIVER=redis
 
-       $tasks = Tasks::where('user_id', Auth::user()->id)->sortable()->paginate(5);
+          return view('users.tasks')->with(compact('tasks'));
 
-
-       return view('users.tasks')->with(compact('tasks'));
     }
 
     /**
