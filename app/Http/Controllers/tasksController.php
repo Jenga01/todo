@@ -66,17 +66,6 @@ class tasksController extends Controller
 
         $tasks=Tasks::where('user_id', Auth::user()->id)->sortable()->paginate(5); //cacheFor naudoja CACHE_DRIVER=redis
 
-        $admin=User::join('tasks', 'tasks.admin_id', '=', 'users.id')
-            ->select('users.email')
-            ->where([
-                ['due_date', '<', date('Y-m-d H:i')],
-                ['status', '!=', '3']])->get();
-
-        $user=User::join('tasks', 'tasks.user_id', '=', 'users.id')
-            ->select('users.email')
-            ->where([
-                ['due_date', '<', date('Y-m-d H:i')],
-                ['status', '!=', '3']])->get();
 
         return view('users.tasks')->with(compact('tasks', 'admin', 'user'));
 
