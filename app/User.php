@@ -11,7 +11,10 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-
+    public function tasks()
+    {
+        return $this->hasMany(Tasks::class, 'admin_id', 'id');
+    }
 
     /**
      * The attributes that are mass assignable.

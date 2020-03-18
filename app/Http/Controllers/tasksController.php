@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 
 class tasksController extends Controller
 {
@@ -47,7 +48,8 @@ class tasksController extends Controller
             'task_name' => $request['task_name'],
             'status' => $request['status'],
             'due_date' => $request['due_date'],
-            'user_id' => $request['user_id']
+            'user_id' => $request['user_id'],
+            'admin_id' => Session::get('adminID')
         ]);
         return redirect()->back()->with('success', 'New task to the user has been added');
 
@@ -61,9 +63,22 @@ class tasksController extends Controller
      */
     public function show()
     {
-          $tasks=Tasks::where('user_id', Auth::user()->id)->cacheFor(60)->sortable()->paginate(5); //cacheFor naudoja CACHE_DRIVER=redis
 
-          return view('users.tasks')->with(compact('tasks'));
+        $tasks=Tasks::where('user_id', Auth::user()->id)->sortable()->paginate(5); //cacheFor naudoja CACHE_DRIVER=redis
+
+        $admin=User::join('tasks', 'tasks.admin_id', '=', 'users.id')
+            ->select('users.email')
+            ->where([
+                ['due_date', '<', date('Y-m-d H:i')],
+                ['status', '!=', '3']])->get();
+
+        $user=User::join('tasks', 'tasks.user_id', '=', 'users.id')
+            ->select('users.email')
+            ->where([
+                ['due_date', '<', date('Y-m-d H:i')],
+                ['status', '!=', '3']])->get();
+
+        return view('users.tasks')->with(compact('tasks', 'admin', 'user'));
 
     }
 

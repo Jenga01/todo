@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -35,6 +36,7 @@ class LoginController extends Controller
         // Check user role
         switch ($role) {
             case 'admin':
+                Session::put('adminID', Auth::user()->id);
                 return '/users';
                 break;
             default:

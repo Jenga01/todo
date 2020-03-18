@@ -35,7 +35,7 @@
                                                         <label for="new" id="new">New</label>
                                                     @elseif($task->status == 2)
                                                         <label for="inprog" id="ip">In progress</label>
-                                                    @else
+                                                    @elseif($task->status == 3)
                                                         <label for="done" id="done">Done</label>
                                                     @endif
                                                 </td>
@@ -64,6 +64,20 @@
 
                                 {{ $tasks->links() }}
                             </div>
+
+                        @foreach($admin as $a)
+
+                           {{$a->email}}
+
+                            @endforeach
+
+                            @foreach($user as $u)
+
+                           {{$u->email}}
+
+                            @endforeach
+
+
 
 
                     </div>

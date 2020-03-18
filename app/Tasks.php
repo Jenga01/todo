@@ -10,10 +10,13 @@ class Tasks extends Model
 {
     use Sortable;
     use QueryCacheable;
-    
+
     protected $fillable = [
-        'task_name', 'status','due_date', 'user_id'
+        'task_name', 'status','due_date', 'user_id', 'admin_id'
     ];
 
     public $sortable = ['due_date', 'status'];
+
+
+
 }
