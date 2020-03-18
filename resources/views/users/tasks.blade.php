@@ -65,19 +65,6 @@
                                 {{ $tasks->links() }}
                             </div>
 
-                        @foreach($admin as $a)
-
-                           {{$a->email}}
-
-                            @endforeach
-
-                            @foreach($user as $u)
-
-                           {{$u->email}}
-
-                            @endforeach
-
-
 
 
                     </div>
