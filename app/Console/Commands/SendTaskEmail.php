@@ -56,6 +56,7 @@ class SendTaskEmail  extends Command implements ShouldQueue
             ->where([
                 ['due_date', '<', date('Y-m-d H:i')],
                 ['status', '!=', '3']])->get();
+
         $user=User::join('tasks', 'tasks.user_id', '=', 'users.id')
             ->select('users.email')
             ->where([

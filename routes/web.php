@@ -32,7 +32,7 @@ Route::resource('task', 'tasksController');
 Route::get('/tasks', 'tasksController@show');
 Route::get('/sort-date', 'tasksController@sortByDate')->name('sortDate');
 
-Route::get('test-email', 'JobController@processQueue');
+Route::get('/test-email', 'JobController@processQueue');
 
 Auth::routes();
 
