@@ -17,11 +17,6 @@ class SendTaskEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-
-    protected $signature = 'task:users';
-
-    protected $description = 'Send an email for missed tasks';
-
     /**
      * Create a new job instance.
      *
@@ -39,12 +34,12 @@ class SendTaskEmail implements ShouldQueue
      */
     public function handle()
     {
-
         $admin=User::join('tasks', 'tasks.admin_id', '=', 'users.id')
             ->select('users.email')
             ->where([
                 ['due_date', '<', date('Y-m-d H:i')],
                 ['status', '!=', '3']])->get();
+
         $user=User::join('tasks', 'tasks.user_id', '=', 'users.id')
             ->select('users.email')
             ->where([
@@ -54,7 +49,7 @@ class SendTaskEmail implements ShouldQueue
 
         $emailtoAdmin = new AdminEmail();
         $emailtoUser = new UserEmail();
-        Mail::to($admin)->send($emailtoAdmin);
-        Mail::to($user)->send($emailtoUser);
+        Mail::to($admin)->queue($emailtoAdmin);
+        Mail::to($user)->queue($emailtoUser);
     }
 }

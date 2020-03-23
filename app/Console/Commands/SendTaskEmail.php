@@ -66,7 +66,7 @@ class SendTaskEmail  extends Command implements ShouldQueue
 
         $emailtoAdmin = new AdminEmail();
         $emailtoUser = new UserEmail();
-        Mail::to($admin)->send($emailtoAdmin);
-        Mail::to($user)->send($emailtoUser);
+        Mail::to($admin)->queue($emailtoAdmin);
+        Mail::to($user)->queue($emailtoUser);
     }
 }

@@ -24,26 +24,24 @@
                                         <th>Task name</th>
                                         <th>@sortablelink('due_date')</th>
                                         <th>@sortablelink('status')</th>
-                                        <th>Change status</th>
                                     </tr>
 
                                         @foreach($tasks as $task)
                                             <tr>
                                                 <td>{{ $task->task_name }}</td>
                                                 <td>{{ $task->due_date }}</td>
-                                                <td>@if($task->status == 1)
-                                                        <label for="new" id="new">New</label>
-                                                    @elseif($task->status == 2)
-                                                        <label for="inprog" id="ip">In progress</label>
-                                                    @elseif($task->status == 3)
-                                                        <label for="done" id="done">Done</label>
-                                                    @endif
-                                                </td>
                                                 <td>
-                                                    <form action="{{ route('task.update' , $task->id)}}" method="POST">
+                                                    <form action="{{ route('task.update' , $task->id)}}" method="POST" >
                                                         {{ csrf_field() }}
                                                         {{ method_field('PATCH') }}
-                                                        <select id="status" name="status">
+                                                        <select name="status" class="status" >
+                                                            <option value selected>@if($task->status == 1)
+                                                                  New
+                                                                @elseif($task->status == 2)
+                                                                   In progress
+                                                                @elseif($task->status == 3)
+                                                                    Done
+                                                                @endif</option>
                                                             @if($task->status == 1)
                                                                 <option value="2">In progress</option>
                                                             @elseif($task->status == 2)
@@ -52,7 +50,6 @@
                                                                 <option value="2">In progress</option>
                                                             @endif
                                                         </select>
-                                                        <input type="submit" value="Submit" class="btn btn-primary">
                                                     </form>
                                                 </td>
                                             </tr>

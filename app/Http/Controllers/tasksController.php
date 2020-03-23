@@ -64,7 +64,9 @@ class tasksController extends Controller
     public function show()
     {
 
-        $tasks=Tasks::where('user_id', Auth::user()->id)->sortable()->cacheFor(60)->paginate(5); //cacheFor naudoja CACHE_DRIVER=redis
+
+
+        $tasks=Tasks::where('user_id', Auth::user()->id)->sortable()->cacheFor(60*60)->paginate(5); //cacheFor naudoja CACHE_DRIVER=redis
 
 
         return view('users.tasks')->with(compact('tasks'));
