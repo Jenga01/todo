@@ -21,20 +21,11 @@ class tasksController extends Controller
         return view('tasks.create');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -52,43 +43,29 @@ class tasksController extends Controller
             'admin_id' => Session::get('adminID')
         ]);
         return redirect()->back()->with('success', 'New task to the user has been added');
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show()
     {
-
-
-
-        $tasks=Tasks::where('user_id', Auth::user()->id)->sortable()->cacheFor(60*60)->paginate(5); //cacheFor naudoja CACHE_DRIVER=redis
+        $tasks = Tasks::where('user_id',
+            Auth::user()->id)->sortable()->paginate(5);
 
 
         return view('users.tasks')->with(compact('tasks'));
-
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -100,18 +77,6 @@ class tasksController extends Controller
 
         return redirect()->back()->with('success', 'Task status has been updated');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
 
 
 }

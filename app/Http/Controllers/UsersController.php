@@ -16,28 +16,19 @@ class UsersController extends Controller
      */
     public function index()
     {
-        if (Auth::guest()){
+        if (Auth::guest()) {
             return redirect('/login');
         }
         $users = User::where('role', 'user')->get();
 
-        return  view('admin.users')->with(compact('users'));
-        //
+        return view('admin.users')->with(compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $data)
-    {
 
-    }
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -54,52 +45,38 @@ class UsersController extends Controller
 
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.edit', ['user'=> $user]);
+        return view('admin.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-
-
         $user = User::find($id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'User has been successfully updated');
-
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -108,6 +85,5 @@ class UsersController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'User has been deleted');
-
     }
 }

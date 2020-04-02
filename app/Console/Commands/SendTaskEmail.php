@@ -16,7 +16,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class SendTaskEmail  extends Command implements ShouldQueue
+class SendTaskEmail extends Command implements ShouldQueue
 {
 
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -51,17 +51,19 @@ class SendTaskEmail  extends Command implements ShouldQueue
      */
     public function handle()
     {
-        $admin=User::join('tasks', 'tasks.admin_id', '=', 'users.id')
+        $admin = User::join('tasks', 'tasks.admin_id', '=', 'users.id')
             ->select('users.email')
             ->where([
                 ['due_date', '<', date('Y-m-d H:i')],
-                ['status', '!=', '3']])->get();
+                ['status', '!=', '3']
+            ])->get();
 
-        $user=User::join('tasks', 'tasks.user_id', '=', 'users.id')
+        $user = User::join('tasks', 'tasks.user_id', '=', 'users.id')
             ->select('users.email')
             ->where([
                 ['due_date', '<', date('Y-m-d H:i')],
-                ['status', '!=', '3']])->get();
+                ['status', '!=', '3']
+            ])->get();
 
 
         $emailtoAdmin = new AdminEmail();
