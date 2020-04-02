@@ -1,2 +1,6 @@
 ## To do task list
-Rabbitmq naudojau https://github.com/vyuldashev/laravel-queue-rabbitmq kuris naudoja laravio queue API, tai tiesiog tereiks env faile nustatyt QUEUE_CONNECTION=rabbitmq ir testuojant paleist php artisan queue:work ir patrigger'int laiško išsiųntimą php artisan task:users
+- create users/admins
+- Admins can create tasks for the users
+- Users can change tasks status(In progress/Done)
+- Users can sort tasks by status/due date
+- Automatic e-mail notifications through rabbitmq to users/admins if tasks hasn't been done and due date has expired
