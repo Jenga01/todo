@@ -33,4 +33,26 @@ API is using JWT for authentication, hence password is needed for the JWT. Execu
 
 This will create JWT_SECRET key in .env file.
 
+## Sending e-mails
 
+Start queue worker:
+`php artisan queue:work`
+
+If running project on a hosted server, execute this command instead: `nohup php artisan queue:work --daemon > /dev/null 2>&1 &`
+
+
+To run scheduler(e.g. on a Forge) use this commmand:
+
+`* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
+
+This will be triggering command in App\Console\Kernel.php: 
+
+ `protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('task:users')
+            ->everyThirtyMinutes();
+    }`
+   
+Alternatively if you want to trigger this command manually, execute:
+
+`php artisan task:users`
