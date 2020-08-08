@@ -46,7 +46,7 @@ To run scheduler(e.g. on a Forge) use this commmand:
 
 `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
 
-This will be triggering command in App\Console\Kernel.php: 
+This will be triggering command registered in App\Console\Kernel.php: 
 
  `protected function schedule(Schedule $schedule)
     {
