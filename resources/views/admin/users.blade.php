@@ -28,7 +28,7 @@
                                     <form action="{{ route('users.destroy' , $user->id)}}" method="POST">
                                         <input name="_method" type="hidden" value="DELETE">
                                         {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-danger">Detele</button>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
                                 <td><a href="{{route('task.index', ['id' => $user->id])}}">Add task</a></td>
@@ -67,6 +67,7 @@
                                     <button style="cursor:pointer" type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
+
 
                     </div>
                 </div>

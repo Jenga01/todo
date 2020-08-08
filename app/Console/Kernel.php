@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+
         'App\Console\Commands\SendTaskEmail',
     ];
 
@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('task:users')
-            ->everyMinute();
+            ->everyThirtyMinutes();
     }
 
     /**

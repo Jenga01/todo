@@ -54,7 +54,7 @@ class tasksController extends Controller
     public function show()
     {
         $tasks = Tasks::where('user_id',
-            Auth::user()->id)->sortable()->paginate(5);
+            Auth::user()->id)->sortable()->cacheFor(60*60)->paginate(5);
 
 
         return view('users.tasks')->with(compact('tasks'));

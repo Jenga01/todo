@@ -24,10 +24,10 @@ Route::get('/login', function () {
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::group(['middleware' => 'auth'], function() {
+
 Route::resource('users', 'UsersController');
 Route::resource('task', 'tasksController');
-});
+
 
 Route::get('/tasks', 'tasksController@show');
 Route::get('/sort-date', 'tasksController@sortByDate')->name('sortDate');
