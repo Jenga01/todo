@@ -16,6 +16,8 @@ API is using JWT for authentication, hence password is needed for the JWT. Execu
 
 `php artisan jwt:secret`
 
+This will create JWT_SECRET key in .env file.
+
 ## USER API Endpoints
 
 - GET: api/users - getlist of users
@@ -31,7 +33,6 @@ API is using JWT for authentication, hence password is needed for the JWT. Execu
 - POST: api/logout - logs out user
 
 
-This will create JWT_SECRET key in .env file.
 
 ## Sending e-mails
 
