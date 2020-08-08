@@ -5,6 +5,7 @@
 - Users can sort tasks by status/due date
 - Automatic e-mail notifications through rabbitmq to users/admins if tasks hasn't been done and due date has expired
 
+
 ## USER API Endpoints
 
 - GET: api/users - getlist of users
