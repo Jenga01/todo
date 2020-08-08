@@ -6,6 +6,16 @@
 - Automatic e-mail notifications through rabbitmq to users/admins if tasks hasn't been done and due date has expired
 
 
+## Setup
+Install missing dependencies:
+`composer install`
+
+And generate APP_KEY in .env file: `php artisan key:generate`
+
+API is using JWT for authentication, hence password is needed for the JWT. Execute this command:
+
+`php artisan jwt:secret`
+
 ## USER API Endpoints
 
 - GET: api/users - getlist of users
@@ -20,8 +30,7 @@
 - POST: api/refresh - refreshes user token
 - POST: api/logout - logs out user
 
-Since it's using JWT authentication, password is needed for the JWT. Execute this command:
-
-`php artisan jwt:secret`
 
 This will create JWT_SECRET key in .env file.
+
+
