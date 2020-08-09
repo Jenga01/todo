@@ -32,7 +32,20 @@ This will create JWT_SECRET key in .env file.
 - POST: api/refresh - refreshes user token
 - POST: api/logout - logs out user
 
+## Caching tasks
 
+Tasks are cached for 1 hour:
+
+```PHP
+public function show()
+    {
+        $tasks = Tasks::where('user_id',
+            Auth::user()->id)->sortable()->cacheFor(60*60)->paginate(5);
+
+
+        return view('users.tasks')->with(compact('tasks'));
+    }
+ ```
 
 ## Sending e-mails
 
@@ -48,11 +61,13 @@ To run scheduler(e.g. on a Forge) use this commmand:
 
 This will be triggering command registered in App\Console\Kernel.php: 
 
- `protected function schedule(Schedule $schedule)
+```PHP
+ protected function schedule(Schedule $schedule)
     {
         $schedule->command('task:users')
             ->everyThirtyMinutes();
-    }`
+    }
+```
    
 Alternatively if you want to trigger this command manually, execute:
 
