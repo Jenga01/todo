@@ -12,7 +12,7 @@ Install missing dependencies:
 
 And generate APP_KEY in .env file: `php artisan key:generate`
 
-API is using JWT for authentication, hence password is needed for the JWT. Execute this command:
+API is using JWT authentication, hence password is needed for the JWT. Execute this command:
 
 `php artisan jwt:secret`
 
