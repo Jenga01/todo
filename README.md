@@ -22,8 +22,8 @@ This will create JWT_SECRET key in .env file.
 
 - GET: api/users - getlist of users
 - POST:api/user - store user
-- PUT: api/user/id - update user
-- DELETE: api/user/id - delete user
+- PUT: api/user/{id} - update user
+- DELETE: api/user/{id} - delete user
 
 #### User authentication API
 
