@@ -14,6 +14,9 @@ copy .env.example to .env and edit config by your environment
 
 And generate APP_KEY in .env file: `php artisan key:generate`
 
+Run 
+`php artisan migrate`
+
 API is using JWT authentication, hence password is needed for the JWT. Execute this command:
 
 `php artisan jwt:secret`
