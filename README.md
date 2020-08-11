@@ -23,6 +23,10 @@ API is using JWT authentication, hence password is needed for the JWT. Execute t
 
 This will create JWT_SECRET key in .env file.
 
+To use rabbitMQ driver set it in the .env file:
+
+`QUEUE_CONNECTION=rabbitmq`
+
 ## USER API Endpoints
 
 - GET: api/users - getlist of users
@@ -54,10 +58,16 @@ public function show()
 
 ## Sending e-mails
 
-Start queue worker:
+To consume the messages start queue worker:
 `php artisan queue:work`
+or
+`rabbitmq:consume`
 
 If running project on a hosted server, execute this command instead: `nohup php artisan queue:work --daemon > /dev/null 2>&1 &`
+
+or
+
+`nohup php rabbitmq:consume --daemon > /dev/null 2>&1 &`
 
 
 To run scheduler(e.g. on a Forge) use this commmand:
