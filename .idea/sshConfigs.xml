@@ -3,7 +3,7 @@
   <component name="SshConfigs">
     <configs>
       <sshConfig authType="PASSWORD" host="134.122.90.151" id="8b866d94-20a8-405b-992a-1ed0d6916a44" port="22" customName="task_server" nameFormat="CUSTOM" username="master_cpkzsmxmrz" />
-      <sshConfig authType="PASSWORD" host="134.122.90.151" id="422a2178-0f3e-4cd2-b593-170972ff4ce7" port="22" customName="task_server" nameFormat="CUSTOM" username="master_cpkzsmxmrz" />
+      <sshConfig authType="PASSWORD" host="134.122.90.151" id="1c9c72cc-7038-4eb1-9a78-9dfa85c8d764" port="22" customName="task_server" nameFormat="CUSTOM" username="master_cpkzsmxmrz" />
     </configs>
   </component>
 </project>

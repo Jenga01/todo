@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +28,6 @@ class UsersController extends Controller
         return view('admin.users')->with(compact('users'));
 
     }
-
 
     /**
      * Store a newly created resource in storage.

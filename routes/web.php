@@ -16,19 +16,9 @@ return redirect('/login');
 });
 
 
-Route::get('/login', function () {
-    if(Auth::check()){
-        return view('auth.login');
-    }
-});
-
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-
-
 Route::resource('users', 'UsersController');
 Route::resource('task', 'tasksController');
-
-
 Route::get('/tasks', 'tasksController@show');
 Route::get('/sort-date', 'tasksController@sortByDate')->name('sortDate');
 
