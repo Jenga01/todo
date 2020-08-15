@@ -15,10 +15,13 @@ Route::get('/', function () {
 return redirect('/login');
 });
 
+Route::group(['middleware' => ['auth', 'admin']], function() {
+    Route::resource('users', 'UsersController');
+    Route::resource('task', 'tasksController');
+});
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::resource('users', 'UsersController');
-Route::resource('task', 'tasksController');
+
 Route::get('/tasks', 'tasksController@show');
 Route::get('/sort-date', 'tasksController@sortByDate')->name('sortDate');
 
@@ -26,5 +29,5 @@ Route::get('/test-email', 'JobController@processQueue');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
